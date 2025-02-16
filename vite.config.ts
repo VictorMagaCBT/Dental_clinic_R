@@ -14,11 +14,8 @@ export default defineConfig({
           'lucide': ['lucide-react']
         }
       }
-    },
-    // Copy _redirects to dist folder
-    copyPublicDir: true,
+    }
   },
-  publicDir: './',
   server: {
     warmup: {
       clientFiles: [

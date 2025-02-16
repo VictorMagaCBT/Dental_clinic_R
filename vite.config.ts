@@ -14,7 +14,8 @@ export default defineConfig({
           'lucide': ['lucide-react']
         }
       }
-    }
+    },
+    copyPublicDir: true
   },
   server: {
     warmup: {
@@ -24,5 +25,6 @@ export default defineConfig({
         './src/LanguageContext.tsx'
       ]
     }
-  }
+  },
+  publicDir: 'public'
 });

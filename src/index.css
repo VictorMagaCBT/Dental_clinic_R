@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Language flag styles */
+.flag-pt {
+  background: linear-gradient(to right,
+    #006600 50%,
+    #FF0000 50%
+  );
+}
+
+.flag-fr {
+  background: linear-gradient(to right,
+    #0055A4 33.33%,
+    #FFFFFF 33.33% 66.66%,
+    #EF4135 66.66%
+  );
+}
+
+.flag-en {
+  background: linear-gradient(to right,
+    #012169 33.33%,
+    #FFFFFF 33.33% 66.66%,
+    #C8102E 66.66%
+  );
+}

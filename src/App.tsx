@@ -1,24 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Stethoscope, Sheet as Teeth, Scale as Scalpel, Building2, Globe2, ChevronRight, Phone, Mail, Clock, MapPin, Languages, MessageCircle } from 'lucide-react';
+import { Stethoscope, Sheet as Teeth, Scale as Scalpel, Building2, Globe2, ChevronRight, Phone, Mail, Clock, MapPin, MessageCircle } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { ContactForm } from './components/ContactForm';
 import { AdminLogin } from './pages/AdminLogin';
 import { AdminDashboard } from './pages/AdminDashboard';
+import { Team } from './pages/Team';
+import { OrthognathicSurgery } from './pages/OrthognathicSurgery';
 
-function MainLayout() {
+export function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [showContactForm, setShowContactForm] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const languages = [
-    { code: 'pt', name: 'PT' },
-    { code: 'fr', name: 'FR' },
-    { code: 'en', name: 'EN' }
+    { code: 'pt', name: 'PT', flagClass: 'flag-pt' },
+    { code: 'fr', name: 'FR', flagClass: 'flag-fr' },
+    { code: 'en', name: 'EN', flagClass: 'flag-en' }
   ];
-
-  const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/351969564324`, '_blank');
-  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -27,43 +26,60 @@ function MainLayout() {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {/* WhatsApp Button */}
-      <button
-        onClick={handleWhatsAppClick}
-        className="fixed bottom-8 right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-200 flex items-center gap-2 group"
-        aria-label="Contact on WhatsApp"
-      >
-        <MessageCircle className="w-6 h-6" />
-        <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-200 ease-in-out">
-          WhatsApp
-        </span>
-      </button>
-
-      {/* Navbar */}
+    <>
       <nav className="bg-white shadow-sm fixed w-full z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="relative flex justify-between h-24">
+            {/* Logo */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <div className="flex items-center gap-2 cursor-pointer" onClick={scrollToTop}>
+                <a href="/" className="flex items-center gap-2">
                   <Stethoscope className="h-8 w-8 text-blue-600" />
                   <span className="text-xl font-bold text-gray-900">DentalCare</span>
-                </div>
+                </a>
               </div>
             </div>
-            <div className="flex items-center gap-8">
-              <button onClick={scrollToTop} className="text-gray-700 hover:text-blue-600">
+
+            {/* Mobile menu button */}
+            <div className="flex items-center md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              >
+                <span className="sr-only">Open main menu</span>
+                <svg
+                  className={`${isMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg
+                  className={`${isMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Desktop menu */}
+            <div className="hidden md:flex md:items-center md:gap-8">
+              <a href="/" className="text-gray-700 hover:text-blue-600">
                 {t('home')}
-              </button>
-              <button onClick={() => scrollToSection('services')} className="text-gray-700 hover:text-blue-600">
+              </a>
+              <a href="/#services" className="text-gray-700 hover:text-blue-600">
                 {t('services')}
-              </button>
+              </a>
+              <a href="/team" className="text-gray-700 hover:text-blue-600">
+                {t('team')}
+              </a>
               <button 
                 onClick={() => setShowContactForm(true)} 
                 className="text-gray-700 hover:text-blue-600"
@@ -75,11 +91,64 @@ function MainLayout() {
                   <button
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`flex items-center gap-1 ${
-                      language === lang.code ? 'text-blue-600 font-semibold' : 'text-gray-700'
-                    } hover:text-blue-600 cursor-pointer`}
+                    className={`flex items-center gap-2 ${
+                      language === lang.code ? 'scale-110' : ''
+                    } transition-transform duration-200`}
                   >
-                    {language === lang.code && <Languages className="h-4 w-4" />}
+                    <div className={`w-4 h-4 rounded-full ${lang.flagClass}`} />
+                    <span className={`${
+                      language === lang.code ? 'text-blue-600 font-semibold' : 'text-gray-700'
+                    } hover:text-blue-600`}>
+                      {lang.name}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-white border-t border-gray-200`}>
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <a
+              href="/"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+            >
+              {t('home')}
+            </a>
+            <a
+              href="/#services"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+            >
+              {t('services')}
+            </a>
+            <a
+              href="/team"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+            >
+              {t('team')}
+            </a>
+            <button
+              onClick={() => {
+                setShowContactForm(true);
+                setIsMenuOpen(false);
+              }}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+            >
+              {t('contact')}
+            </button>
+            <div className="px-3 py-2">
+              <div className="flex flex-wrap gap-4">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className={`flex items-center gap-2 ${
+                      language === lang.code ? 'text-blue-600 font-semibold' : 'text-gray-700'
+                    }`}
+                  >
+                    <div className={`w-4 h-4 rounded-full ${lang.flagClass}`} />
                     <span>{lang.name}</span>
                   </button>
                 ))}
@@ -105,11 +174,36 @@ function MainLayout() {
           </div>
         </div>
       )}
+    </>
+  );
+}
+
+function MainLayout() {
+  const { t } = useLanguage();
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/351969564324`, '_blank');
+  };
+
+  return (
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* WhatsApp Button */}
+      <button
+        onClick={handleWhatsAppClick}
+        className="fixed bottom-8 right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-200 flex items-center gap-2 group"
+        aria-label="Contact on WhatsApp"
+      >
+        <MessageCircle className="w-6 h-6" />
+        <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-200 ease-in-out">
+          WhatsApp
+        </span>
+      </button>
+
+      <Navbar />
 
       {/* Main Content */}
       <main className="flex-grow">
         {/* Hero Section */}
-        <header id="home" className="relative h-[90vh] mt-20">
+        <header id="home" className="relative h-[90vh] mt-24">
           <div className="absolute inset-0">
             <img
               src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
@@ -143,9 +237,9 @@ function MainLayout() {
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-gray-900">{t('orthognathicSurgery')}</h3>
                   <p className="text-gray-600 mb-6">{t('orthognathicDesc')}</p>
-                  <button className="flex items-center text-blue-600 font-semibold hover:text-blue-700">
+                  <a href="/orthognathic-surgery" className="flex items-center text-blue-600 font-semibold hover:text-blue-700">
                     {t('learnMore')} <ChevronRight className="w-4 h-4 ml-1" />
-                  </button>
+                  </a>
                 </div>
                 <div className="h-64 md:h-auto">
                   <img
@@ -290,6 +384,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainLayout />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/orthognathic-surgery" element={<OrthognathicSurgery />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="*" element={<Navigate to="/" replace />} />

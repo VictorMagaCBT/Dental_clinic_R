@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Stethoscope, Sheet as Teeth, Scale as Scalpel, Building2, Globe2, ChevronRight, Phone, Mail, Clock, MapPin, MessageCircle } from 'lucide-react';
+import { Stethoscope, Globe2, ChevronRight, Phone, Mail, Clock, MapPin, MessageCircle } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { ContactForm } from './components/ContactForm';
 import { AdminLogin } from './pages/AdminLogin';
@@ -8,7 +8,7 @@ import { AdminDashboard } from './pages/AdminDashboard';
 import { Team } from './pages/Team';
 import { OrthognathicSurgery } from './pages/OrthognathicSurgery';
 
-export function Navbar() {
+function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const [showContactForm, setShowContactForm] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -18,13 +18,6 @@ export function Navbar() {
     { code: 'fr', name: 'FR', flagClass: 'flag-fr' },
     { code: 'en', name: 'EN', flagClass: 'flag-en' }
   ];
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <>
@@ -184,6 +177,29 @@ function MainLayout() {
     window.open(`https://wa.me/351969564324`, '_blank');
   };
 
+  const services = [
+    {
+      title: 'implantSurgery',
+      description: 'implantDesc',
+      image: 'https://i.ibb.co/7tnhV1F/implantes-em-3d.jpg'
+    },
+    {
+      title: 'wisdomTeeth',
+      description: 'wisdomDesc',
+      image: 'https://i.ibb.co/h9R2kxx/siso-3d2.webp'
+    },
+    {
+      title: 'cystRemoval',
+      description: 'cystDesc',
+      image: 'https://i.ibb.co/MVF0N2t/Imagem-33.jpg'
+    },
+    {
+      title: 'oralSurgery',
+      description: 'oralDesc',
+      image: 'https://i.ibb.co/28jrwH2/raiox.jpg'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* WhatsApp Button */}
@@ -232,18 +248,15 @@ function MainLayout() {
             <div className="mb-16 bg-white rounded-2xl shadow-xl overflow-hidden">
               <div className="grid md:grid-cols-2">
                 <div className="p-8 md:p-12">
-                  <div className="inline-block p-3 bg-blue-100 rounded-lg mb-4">
-                    <Scalpel className="w-6 h-6 text-blue-600" />
-                  </div>
                   <h3 className="text-2xl font-bold mb-4 text-gray-900">{t('orthognathicSurgery')}</h3>
                   <p className="text-gray-600 mb-6">{t('orthognathicDesc')}</p>
-                  <a href="/orthognathic-surgery" className="flex items-center text-blue-600 font-semibold hover:text-blue-700">
+                  <a href="/orthognathic-surgery" className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700">
                     {t('learnMore')} <ChevronRight className="w-4 h-4 ml-1" />
                   </a>
                 </div>
                 <div className="h-64 md:h-auto">
                   <img
-                    src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&q=80"
+                    src="https://i.ibb.co/BBC0Md8/exemplo-esqueleto.webp"
                     alt="Orthognathic Surgery"
                     className="w-full h-full object-cover"
                   />
@@ -253,34 +266,19 @@ function MainLayout() {
 
             {/* Other Services Grid */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                {
-                  icon: <Teeth className="w-6 h-6" />,
-                  title: 'implantSurgery',
-                  description: 'implantDesc'
-                },
-                {
-                  icon: <Stethoscope className="w-6 h-6" />,
-                  title: 'wisdomTeeth',
-                  description: 'wisdomDesc'
-                },
-                {
-                  icon: <Scalpel className="w-6 h-6" />,
-                  title: 'cystRemoval',
-                  description: 'cystDesc'
-                },
-                {
-                  icon: <Building2 className="w-6 h-6" />,
-                  title: 'oralSurgery',
-                  description: 'oralDesc'
-                }
-              ].map((service, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl shadow-lg">
-                  <div className="inline-block p-3 bg-blue-100 rounded-lg mb-4">
-                    {service.icon}
+              {services.map((service, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
+                  <div className="h-48">
+                    <img
+                      src={service.image}
+                      alt={t(service.title)}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{t(service.title)}</h3>
-                  <p className="text-gray-600">{t(service.description)}</p>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-gray-900">{t(service.title)}</h3>
+                    <p className="text-gray-600">{t(service.description)}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -395,3 +393,4 @@ function App() {
 }
 
 export default App;
+export { Navbar };

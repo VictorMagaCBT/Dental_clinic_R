@@ -30,8 +30,8 @@ export function OrthognathicSurgery() {
       <div className="relative h-[60vh] pt-24">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&q=80"
-            alt="Orthognathic Surgery"
+            src="https://i.ibb.co/8gDxM1G/tecnologia.jpg"
+            alt="Orthognathic Surgery Technology"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-blue-900/70" />
@@ -63,7 +63,7 @@ export function OrthognathicSurgery() {
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
               <img
-                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80"
+                src="https://i.ibb.co/Tg7bcPW/Imagem-10.jpg"
                 alt="Dental consultation"
                 className="w-full h-full object-cover"
               />
@@ -93,7 +93,7 @@ export function OrthognathicSurgery() {
           <div className="grid md:grid-cols-2 gap-12">
             <div className="rounded-xl overflow-hidden shadow-lg">
               <img
-                src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80"
+                src="https://i.ibb.co/K7PJTH0/Imagem-11-Inc-gnita-min.jpg"
                 alt="Treatment results"
                 className="w-full h-full object-cover"
               />

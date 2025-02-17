@@ -1,0 +1,7 @@
+/* /index.html 200
+
+# Specific routes
+/team              /index.html 200
+/orthognathic-surgery  /index.html 200
+/admin             /index.html 200
+/admin/dashboard   /index.html 200

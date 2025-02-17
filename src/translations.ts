@@ -1,4 +1,4 @@
-import { Translations } from './types.ts';
+import { Translations } from './types';
 
 export const translations: Translations = {
   pt: {
@@ -64,6 +64,19 @@ export const translations: Translations = {
     orthognathicResult4: "Aumento da autoestima e confiança",
     orthognathicCtaTitle: "Transforme Sua Vida com Cirurgia Ortognática",
     orthognathicCtaDesc: "Agende uma consulta para descobrir como podemos ajudar você a alcançar um sorriso mais saudável e harmonioso.",
+    contactUs: "Entre em Contacto",
+    name: "Nome",
+    email: "Email",
+    phone: "Telefone",
+    country: "País",
+    preferredDate: "Data Preferida",
+    subject: "Assunto",
+    message: "Mensagem",
+    send: "Enviar",
+    sending: "A enviar...",
+    successMessage: "Mensagem Enviada com Sucesso!",
+    successDescription: "Entraremos em contacto consigo em breve.",
+    errorMessage: "Ocorreu um erro. Por favor, tente novamente."
   },
   fr: {
     home: "Accueil",
@@ -128,6 +141,19 @@ export const translations: Translations = {
     orthognathicResult4: "Augmentation de l'estime de soi et de la confiance",
     orthognathicCtaTitle: "Transformez Votre Vie avec la Chirurgie Orthognathique",
     orthognathicCtaDesc: "Prenez rendez-vous pour découvrir comment nous pouvons vous aider à obtenir un sourire plus sain et harmonieux.",
+    contactUs: "Contactez-nous",
+    name: "Nom",
+    email: "Email",
+    phone: "Téléphone",
+    country: "Pays",
+    preferredDate: "Date Préférée",
+    subject: "Sujet",
+    message: "Message",
+    send: "Envoyer",
+    sending: "Envoi en cours...",
+    successMessage: "Message Envoyé avec Succès!",
+    successDescription: "Nous vous contacterons bientôt.",
+    errorMessage: "Une erreur s'est produite. Veuillez réessayer."
   },
   en: {
     home: "Home",
@@ -192,5 +218,18 @@ export const translations: Translations = {
     orthognathicResult4: "Increased self-esteem and confidence",
     orthognathicCtaTitle: "Transform Your Life with Orthognathic Surgery",
     orthognathicCtaDesc: "Schedule a consultation to discover how we can help you achieve a healthier and more harmonious smile.",
+    contactUs: "Contact Us",
+    name: "Name",
+    email: "Email",
+    phone: "Phone",
+    country: "Country",
+    preferredDate: "Preferred Date",
+    subject: "Subject",
+    message: "Message",
+    send: "Send",
+    sending: "Sending...",
+    successMessage: "Message Sent Successfully!",
+    successDescription: "We will contact you soon.",
+    errorMessage: "An error occurred. Please try again."
   }
 };

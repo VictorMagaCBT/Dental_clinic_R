@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Stethoscope, Globe2, ChevronRight, Phone, Mail, Clock, MapPin, MessageCircle } from 'lucide-react';
+import { Globe2, ChevronRight, Phone, Mail, Clock, MapPin, MessageCircle } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { ContactForm } from './components/ContactForm';
 import { AdminLogin } from './pages/AdminLogin';
@@ -28,8 +28,11 @@ function Navbar() {
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <a href="/" className="flex items-center gap-2">
-                  <Stethoscope className="h-8 w-8 text-blue-600" />
-                  <span className="text-xl font-bold text-gray-900">DentalCare</span>
+                  <img 
+                    src="https://i.ibb.co/P5V4vgx/logo-Ramiro-sem-fundo.png" 
+                    alt="DentalCare Logo" 
+                    className="h-20 w-auto"
+                  />
                 </a>
               </div>
             </div>
@@ -173,6 +176,8 @@ function Navbar() {
 
 function MainLayout() {
   const { t } = useLanguage();
+  const [showContactForm, setShowContactForm] = React.useState(false);
+  
   const handleWhatsAppClick = () => {
     window.open(`https://wa.me/351969564324`, '_blank');
   };
@@ -216,6 +221,23 @@ function MainLayout() {
 
       <Navbar />
 
+      {/* Contact Form Modal */}
+      {showContactForm && (
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full m-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-end p-4">
+              <button
+                onClick={() => setShowContactForm(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                ×
+              </button>
+            </div>
+            <ContactForm onClose={() => setShowContactForm(false)} />
+          </div>
+        </div>
+      )}
+
       {/* Main Content */}
       <main className="flex-grow">
         {/* Hero Section */}
@@ -232,8 +254,11 @@ function MainLayout() {
             <div className="text-white max-w-3xl">
               <h1 className="text-5xl font-bold mb-6">{t('heroTitle')}</h1>
               <p className="text-xl mb-8">{t('heroSubtitle')}</p>
-              <button className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition">
-                {t('scheduleButton')}
+              <button 
+                onClick={() => setShowContactForm(true)}
+                className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition"
+              >
+                Entre em contato connosco
               </button>
             </div>
           </div>
@@ -328,8 +353,11 @@ function MainLayout() {
             {/* Logo and Description */}
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Stethoscope className="h-6 w-6 text-blue-400" />
-                <span className="text-lg font-bold">DentalCare</span>
+                <img 
+                  src="https://i.ibb.co/P5V4vgx/logo-Ramiro-sem-fundo.png" 
+                  alt="DentalCare Logo" 
+                  className="h-12 w-auto bg-white"
+                />
               </div>
               <p className="text-gray-400">{t('specialists')}</p>
             </div>

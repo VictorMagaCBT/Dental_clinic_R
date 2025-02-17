@@ -265,7 +265,7 @@ function MainLayout() {
                 onClick={() => setShowContactForm(true)}
                 className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition"
               >
-                Entre em contato connosco
+                {t('contactUs')}
               </button>
             </div>
           </div>

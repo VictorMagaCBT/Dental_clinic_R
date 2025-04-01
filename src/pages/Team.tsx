@@ -39,16 +39,19 @@ export function Team() {
       {/* Team Members */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Dr. Silva */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="h-80">
+          {/* Dr. Ramiro Silva */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden flex items-center">
+            {/* Imagem do Dr. */}
+            <div className="w-1/2 h-[400px]">
               <img
-                src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80"
+                src="https://i.ibb.co/86djpPx/Ramiro-min.jpg?auto=format&fit=crop&q=80"
                 alt="Dr. Miguel Silva"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="p-8">
+
+            {/* Conteúdo ao lado */}
+            <div className="w-1/2 p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
                 {t('drSilvaName')}
               </h3>
@@ -66,16 +69,19 @@ export function Team() {
             </div>
           </div>
 
-          {/* Dra. Santos */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="h-80">
+          {/* Dr. Colega */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden flex items-center">
+            {/* Imagem da Dra. */}
+            <div className="w-1/2 h-[400px]">
               <img
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80"
+                src="https://i.ibb.co/8PtrdJb/Colega-Ramiro-min-1.jpg?auto=format&fit=crop&q=80"
                 alt="Dra. Ana Santos"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="p-8">
+
+            {/* Conteúdo ao lado */}
+            <div className="w-1/2 p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
                 {t('drSantosName')}
               </h3>
@@ -92,6 +98,7 @@ export function Team() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
